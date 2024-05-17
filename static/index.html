@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>SSE listening page</title>
+    <script>
+        if (typeof (EventSource) !== "undefined") {
+            var source = new EventSource("http://localhost:3000/event");
+            source.onmessage = function (event) {
+                console.log(event.data);
+                document.getElementById("result").innerHTML += event.data + "<br>";
+            };
+        } else {
+            // Sorry! No server-sent events support..
+        }
+    </script>
+</head>
+
+<body>
+    <h1>SSE listening page</h1>
+    <p>Waiting for events...</p>
+    <div id="result"></div>
+</body>
+
+</html>
